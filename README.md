@@ -1,110 +1,109 @@
 # **qb-factoryjob**
 
-A customizable factory job script for **QBCore** framework. This resource allows players to work in a factory, craft items, manage stashes, and gain XP to level up their crafting skills.
+A fully customizable factory job script for the **QBCore** framework, allowing players to craft items, manage stashes, gain XP, and level up their crafting skills.
 
 ---
 
 ## **Features**
-- **Crafting System**: Players can craft items using recipes and gain XP for successful crafts.
-- **XP and Leveling**: Players level up by gaining XP, with configurable max levels and XP multipliers.
-- **Stash Management**: Multiple stashes for storing raw materials, finished products, and tools.
-- **qb-target Integration**: Easy-to-use target system for interacting with stashes and crafting tables.
-- **Customizable Configurations**: Easily configure stashes, crafting recipes, XP settings, and more.
+- 🛠 **Advanced Crafting System**: Craft items using custom recipes and earn XP.
+- 📈 **XP & Leveling System**: Configurable XP multipliers and max levels.
+- 📦 **Stash Management**: Store raw materials, tools, and finished products in different stashes.
+- 🎯 **qb-target Integration**: Easily interact with stashes and crafting stations.
+- ⚙️ **Highly Configurable**: Customize crafting, XP settings, job restrictions, and stash properties.
 
 ---
 
 ## **Dependencies**
-- [**qb-core**](https://github.com/qbcore-framework/qb-core): Core framework for QBCore.
-- [**qb-target**](https://github.com/qbcore-framework/qb-target): For interaction with stashes and crafting tables.
-- [**qb-inventory**](https://github.com/qbcore-framework/qb-inventory): For managing stashes and items.
+- [**qb-core**](https://github.com/qbcore-framework/qb-core) - Core framework.
+- [**qb-target**](https://github.com/qbcore-framework/qb-target) - Interaction system.
+- [**qb-inventory**](https://github.com/qbcore-framework/qb-inventory) - Inventory management.
 
 ---
 
 ## **Installation**
-1. Download the `st-factoryjob` resource and place it in your `resources` folder.
-2. Add the following line to your `server.cfg`:
+1. Download `qb-factoryjob` and place it in the `resources` folder.
+2. Add this line to `server.cfg`:
    ```lua
-   ensure st-factoryjob
+   ensure qb-factoryjob
    ```
-3. Ensure all dependencies (qb-core, qb-target, qb-inventory) are installed and running.
+3. Ensure all dependencies are installed and running.
 
 ---
 
 ## **Configuration**
-### **General Configuration**
-Edit the `shared/Config.lua` file to customize:
-- **XP System**: Enable/disable XP, set max levels, and configure XP multipliers.
-- **Crafting Recipes**: Define recipes for crafting items.
-- **Job Restrictions**: Set which jobs can access the factory.
+### 🔧 **General Settings** (shared/Config.lua)
+- **XP System**: Enable/disable XP, configure max levels, and XP gains.
+- **Crafting Recipes**: Define item recipes and crafting costs.
+- **Job Restrictions**: Specify job roles that can access the factory.
 
-### **Stash Configuration**
-Edit the `shared/Config.Stashes.lua` file to customize:
-- **Stash Locations**: Define coordinates, sizes, and labels for each stash.
-- **Stash Properties**: Set max weight and slots for each stash.
+### 📍 **Stash Settings** (shared/Config.Stashes.lua)
+- **Stash Locations**: Define stash coordinates, sizes, and labels.
+- **Storage Limits**: Set max weight and slots per stash.
 
 ---
 
 ## **Usage**
-### **Accessing Stashes**
-- Players can interact with stashes using the qb-target system.
-- Each stash is labeled and can be accessed by players with the factory job.
+### 📦 **Managing Stashes**
+- Use `qb-target` to interact with stashes.
+- Only factory workers can access specific storage areas.
 
-### **Crafting Items**
-- Players can craft items at designated crafting tables.
-- Successful crafts reward XP, which contributes to leveling up.
+### 🔨 **Crafting Items**
+- Use crafting tables to create items.
+- Successful crafts grant XP, contributing to level progression.
 
-### **XP and Leveling**
-- Players gain XP for successful crafts.
-- XP requirements for each level are configurable in `Config.lua`.
+### 🎓 **XP & Leveling**
+- Players earn XP per craft.
+- Leveling system settings are configurable in `Config.lua`.
 
 ---
 
-## **Commands**
-- **Set XP**: Admins can set a player's XP using the `/setcraftxp` command.
-- **Set Level**: Admins can set a player's level using the `/setcraftlevel` command.
+## **Admin Commands**
+- `/setcraftxp [player] [amount]` - Set XP for a player.
+- `/setcraftlevel [player] [level]` - Adjust a player's crafting level.
 
 ---
 
 ## **File Structure**
 ```
-st-factoryjob/
+qb-factoryjob/
 │
 ├── fxmanifest.lua
 ├── shared/
-│   ├── Config.lua          # General configuration
-│   └── Config.Stashes.lua  # Stash-specific configuration
+│   ├── Config.lua         # General settings
+│   └── Config.Stashes.lua # Stash-specific settings
 ├── client/
-│   ├── main.lua            # Main client logic
-│   └── target.lua          # Target integration for stashes
+│   ├── main.lua           # Client logic
+│   └── target.lua         # qb-target interactions
 ├── server/
-│   └── main.lua            # Main server logic
-└── README.md               # Documentation
+│   └── main.lua           # Server logic
+└── README.md              # Documentation
 ```
 
 ---
 
-## **Support**
-For support, questions, or feature requests, please open an issue on the GitHub repository.
+## **Support & Contributions**
+For issues, feature requests, or contributions, please open a GitHub issue.
 
 ---
 
 ## **License**
-This resource is licensed under the MIT License. See the LICENSE file for more details.
+This resource is licensed under MIT License. See the `LICENSE` file for details.
 
 ---
 
 ## **Credits**
-Developed by [Louai].
+Developed by **[Louai]**.
 
-Enjoy using **st-factoryjob**! 🚀
+Enjoy **qb-factoryjob** 🚀
 
 ---
 
-## **Screenshots (Comming Soon)**
+## **Screenshots (Coming Soon)**
+
 ---
 
 ## **Changelog**
-### v1.0.0
-- Initial release of `st-factoryjob`.
+### 🆕 v1.0.0
+- Initial release.
 - Added crafting system, XP leveling, and stash management.
 - Integrated qb-target for seamless interactions.
