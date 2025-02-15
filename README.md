@@ -1,144 +1,110 @@
-# qb-factory Script
+# **qb-factoryjob**
 
-The **qb-factory** script is a crafting and selling system for the **QBCore Framework**. It allows players with the **factory job** to craft items, sell goods, and utilize custom stash systems. Designed with flexibility and customization in mind, it offers configurable crafting recipes, crafting tables, stash locations, and other features.
-
----
-
-## Features
-
-- **Crafting System**:
-  - Craft various items with defined recipes and success percentages.
-  - Items require specific ingredients, time, and player XP levels to craft.
-  - Supports crafting tables with individual configurations and recipes.
-
-- **XP System** (Optional):
-  - Players gain XP upon successful or failed crafting.
-  - Configurable XP values, levels, and level multipliers.
-
-- **Blips and Markers**:
-  - Configurable crafting blips and floor markers.
-
-- **Stash System**:
-  - Custom stashes for fruits, vegetables, meats, and packed goods.
-  - Configurable stash weight and slots.
-
-- **Target Zones**:
-  - Interact with crafting tables and stashes using target zones defined by **st-target**.
-
-- **Highly Configurable**:
-  - Easily adjust settings such as crafting locations, item recipes, XP system, and blips through the `config.lua` file.
+A customizable factory job script for **QBCore** framework. This resource allows players to work in a factory, craft items, manage stashes, and gain XP to level up their crafting skills.
 
 ---
 
-## Installation
-
-### Requirements
-
-- **QBCore Framework**
-- **okokTextUI** (Optional, for optimized UI notifications)
-- **st-target** (For target zones)
-
-### Steps
-
-1. **Download and Install**:
-   - Place the `qb-factory` folder into your server's **resources** directory.
-
-2. **Add to Server Config**:
-   - Add `ensure qb-factory` to your `server.cfg` file.
-
-3. **Dependencies**:
-   - Ensure `st-target` and `qb-core` are correctly installed and configured.
-
-4. **Configure**:
-   - Open `config.lua` and adjust the settings to your preference:
-     - Toggle options such as `UseOkokTextUI`, `ShowBlips`, `UseXP`, etc.
-     - Configure crafting recipes and tables.
-     - Adjust stash locations and settings.
+## **Features**
+- **Crafting System**: Players can craft items using recipes and gain XP for successful crafts.
+- **XP and Leveling**: Players level up by gaining XP, with configurable max levels and XP multipliers.
+- **Stash Management**: Multiple stashes for storing raw materials, finished products, and tools.
+- **qb-target Integration**: Easy-to-use target system for interacting with stashes and crafting tables.
+- **Customizable Configurations**: Easily configure stashes, crafting recipes, XP settings, and more.
 
 ---
 
-## Configuration
+## **Dependencies**
+- [**qb-core**](https://github.com/qbcore-framework/qb-core): Core framework for QBCore.
+- [**qb-target**](https://github.com/qbcore-framework/qb-target): For interaction with stashes and crafting tables.
+- [**qb-inventory**](https://github.com/qbcore-framework/qb-inventory): For managing stashes and items.
 
-### `config.lua` Key Settings
+---
 
-### Crafting Tables Example
-```lua
-Config.UseOkokTextUI = true  -- Use okokTextUI for optimized notifications.
-Config.Key = 38              -- Interaction key (Default: [E]).
-Config.HideMinimap = true    -- Hide minimap when crafting menu is open.
-Config.ShowBlips = false     -- Toggle crafting blips on the map.
-Config.UseXP = false         -- Enable or disable XP system.
+## **Installation**
+1. Download the `st-factoryjob` resource and place it in your `resources` folder.
+2. Add the following line to your `server.cfg`:
+   ```lua
+   ensure st-factoryjob
+   ```
+3. Ensure all dependencies (qb-core, qb-target, qb-inventory) are installed and running.
 
-```lua
-Config.CraftingTables = {
-    {
-        coordinates = vector3(1228.15, -3305.0, 5.5),
-        radius = 0.5,
-        tableName = 'Sack Table',
-        crafts = {
-            {
-                item = 'advancedlockpick',
-                amount = 1,
-                recipe = {
-                    {'plastic', 1, true},
-                    {'lockpick', 1, true},
-                },
-                successCraftPercentage = 75,
-                time = 3,
-                xpPerCraft = 15,
-                job = { 'factory' },
-            },
-        },
-    },
-}
+---
+
+## **Configuration**
+### **General Configuration**
+Edit the `shared/Config.lua` file to customize:
+- **XP System**: Enable/disable XP, set max levels, and configure XP multipliers.
+- **Crafting Recipes**: Define recipes for crafting items.
+- **Job Restrictions**: Set which jobs can access the factory.
+
+### **Stash Configuration**
+Edit the `shared/Config.Stashes.lua` file to customize:
+- **Stash Locations**: Define coordinates, sizes, and labels for each stash.
+- **Stash Properties**: Set max weight and slots for each stash.
+
+---
+
+## **Usage**
+### **Accessing Stashes**
+- Players can interact with stashes using the qb-target system.
+- Each stash is labeled and can be accessed by players with the factory job.
+
+### **Crafting Items**
+- Players can craft items at designated crafting tables.
+- Successful crafts reward XP, which contributes to leveling up.
+
+### **XP and Leveling**
+- Players gain XP for successful crafts.
+- XP requirements for each level are configurable in `Config.lua`.
+
+---
+
+## **Commands**
+- **Set XP**: Admins can set a player's XP using the `/setcraftxp` command.
+- **Set Level**: Admins can set a player's level using the `/setcraftlevel` command.
+
+---
+
+## **File Structure**
 ```
-### Stash Example
-```lua
-AddEventHandler("qb-factory:Client:Stash01", function()
-    local other = {}
-    other.maxweight = 40000000 -- Stash weight.
-    other.slots = 50          -- Stash slots.
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", "Fruits_Stash", other)
-    TriggerEvent("inventory:client:SetCurrentStash", "Fruits_Stash")
-end)
+st-factoryjob/
+│
+├── fxmanifest.lua
+├── shared/
+│   ├── Config.lua          # General configuration
+│   └── Config.Stashes.lua  # Stash-specific configuration
+├── client/
+│   ├── main.lua            # Main client logic
+│   └── target.lua          # Target integration for stashes
+├── server/
+│   └── main.lua            # Main server logic
+└── README.md               # Documentation
 ```
-### Depedency
-- `qb-core`
-- `okokTextUI`
-- `qb-target`
 
+---
 
-## Usage
+## **Support**
+For support, questions, or feature requests, please open an issue on the GitHub repository.
 
-### Crafting
-1. Approach a crafting table location.
-2. Press the interaction key (default: **[E]**).
-3. Select the item you want to craft from the menu.
-4. Ensure you have the required materials in your inventory.
+---
 
-### Stash Interaction
-1. Approach a stash location.
-2. Press the interaction key (default: **[E]**).
-3. Access the stash to store or retrieve items.
+## **License**
+This resource is licensed under the MIT License. See the LICENSE file for more details.
 
-## Adding New Items or Recipes
-1. Open `config.lua`.
-2. Add a new entry under `Config.Crafting` for crafting tables or `Config.itemNames` for new items.
-3. Reload the resource or restart the server.
+---
 
-## Commands & Events
+## **Credits**
+Developed by [Louai].
 
-### Events
-- `qb-factory:Client:Stash01` - Opens the Fruits Stash.
-- `qb-factory:Client:Stash02` - Opens the Vegetables Stash.
-- `qb-factory:Client:Stash03` - Opens the Meat Aliments Stash.
-- `qb-factory:Client:Stash04` - Opens the Packed Fruits Stash.
-- `qb-factory:Client:Stash05` - Opens the Packed Vegetables Stash.
+Enjoy using **st-factoryjob**! 🚀
 
-## Notes
-- Ensure the factory job is added to your QBCore job configuration.
-- If using the XP system, adjust `MaxLevel`, `StartEXP`, and `LevelMultiplier` according to your server's progression style.
-- Test crafting recipes and stash interactions after configuration to ensure they work as intended.
+---
 
-## Support
-For issues or questions, contact me on GitHub or open an issue in the [GitHub repository](https://github.com/louairgh) for additional assistance.
+## **Screenshots (Comming Soon)**
+---
+
+## **Changelog**
+### v1.0.0
+- Initial release of `st-factoryjob`.
+- Added crafting system, XP leveling, and stash management.
+- Integrated qb-target for seamless interactions.
