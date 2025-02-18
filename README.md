@@ -91,13 +91,6 @@ This resource is licensed under MIT License. See the `LICENSE` file for details.
 
 ---
 
-## **Credits**
-Developed by **[Louai]**.
-
-Enjoy **qb-factoryjob** 🚀
-
----
-
 ## **Screenshots (Coming Soon)**
 
 ---
